@@ -63,7 +63,7 @@ const packageNote = document.getElementById('package-note');
 function syncPackage() {
   const plan = PACKAGES[packageSelect.value];
   quantityInput.max = plan ? String(plan.photos) : '1000';
-  packageNote.textContent = plan ? `${plan.name} — $${plan.price} flat fee. ${plan.scope}` : 'Choose a package above, or tell us what you need and we’ll help you choose.';
+  packageNote.textContent = plan ? `${plan.name}, $${plan.price} flat fee. ${plan.scope}` : 'Choose a package above, or tell us what you need and we’ll help you choose.';
 }
 packageSelect.addEventListener('change', syncPackage);
 document.querySelectorAll('[data-package]').forEach(button => button.addEventListener('click', () => {
@@ -102,7 +102,7 @@ form.addEventListener('submit', event => {
     return;
   }
   const plan = PACKAGES[data.get('package')];
-  const selectedPackage = plan ? `${plan.name} — $${plan.price} flat fee` : 'Help me choose a package / custom quote';
+  const selectedPackage = plan ? `${plan.name}, $${plan.price} flat fee` : 'Help me choose a package / custom quote';
   preparedMessage.value = `Hi FrameFix! I’d like to enquire about photo enhancement.\n\nName: ${name}\nContact: ${contact}\nPackage: ${selectedPackage}\n${plan ? `Package details: ${plan.scope}\n` : ''}Photos for: ${data.get('purpose')}\nNumber of photos: ${data.get('quantity')}\nWhat needs attention: ${data.get('service')}\n\n${String(data.get('message')).trim() || 'Please review my photos and suggest what can be improved.'}\n\nI’ll send the original photos with this message. Please confirm the package, scope, and delivery timing before starting.`;
   copyStatus.textContent = '';
   copyButtonLabel.textContent = 'Copy my enquiry';
